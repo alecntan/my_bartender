@@ -1,12 +1,19 @@
 import { Link, Outlet } from 'react-router-dom';
+import Container from '@mui/material/Container';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
 
 function App() {
-        return (
-        <div>
-            <h1>Welcome to the App</h1>
-            <div id='firebaseui-auth-container'></div>
-            <div id='loader'>Loading...</div>
-        </div>
+    return (
+        <Container>
+            <AppBar sx={{ boxShadow: 'none'}} color='transparent' position='static'>
+                <Toolbar sx={{ justifyContent: 'end'}} >
+                     <Button color='inherit'>Login</Button>
+                </Toolbar>
+            </AppBar> 
+            <Outlet />
+        </Container>
     );
 }
 
