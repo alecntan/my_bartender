@@ -1,12 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
+import DrinkGrid from '../components/DrinkGrid.js';
 
 export default function ResultsPage(props) {
 
-    let [searchParams, setSearchParams] = useSearchParams();
-
     return (
         <>
-            <h1>Results Page</h1>
+            <DrinkGrid />
         </>
     );
 }

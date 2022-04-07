@@ -1,7 +1,6 @@
 import Logo from '../components/Logo.js';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import SearchBar from '../components/SearchBar.js';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 

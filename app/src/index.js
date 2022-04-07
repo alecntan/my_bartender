@@ -14,7 +14,7 @@ ReactDOM.render(
     <BrowserRouter>
         <Routes>
             <Route path='/' element={<App />} >
-                <Route path='/search' element={<SearchPage />} />
+                <Route path='/search' element={<ResultsPage />} />
                 <Route path='/drink/:drinkId' element={<ProfilePage />} />
                 <Route path='/favourites/:userId' element={<FavouritesPage />} />
             </Route>
