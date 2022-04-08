@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import DrinkGrid from '../components/DrinkGrid.js';
 import Typography from '@mui/material/Typography';
 import { sample_drinks } from '../data/sample_drinks.js';
 
 export default function ResultsPage(props) {
 
-    //const [drinks, setDrinks] = useState([]);
-    let drinks = sample_drinks;
+    const [drinks, setDrinks] = useState([]);
+    const { filter } = useLocation();
+    
+    console.log(filter);
 
     return (
         <>
