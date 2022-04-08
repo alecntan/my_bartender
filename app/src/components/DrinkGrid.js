@@ -3,28 +3,42 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { images } from '../data/image_list.js';
+import { sample_drinks } from '../data/sample_drinks.js';
 
 
 export default function DrinkGrid(props) {
 
+    const handleClickImage = (name) => {
+        console.log(name);
+    }
+
+    const handleClickFave = (name) => {
+        console.log(name + ' is a fave');
+    }
+
     return (
-        <ImageList sx={{ width: '100%'}}>
-            <ImageListItem key="Subheader" cols={4}>
-            </ImageListItem>
-            {images.map((item) => (
-                <ImageListItem key={item.img}>
+        <ImageList sx={{ width: '100%'}} cols={4}>
+            {sample_drinks.map((drink) => (
+                <ImageListItem key={drink.strDrinkThumb}>
                     <img
-                        src={`${item.img}?w=248&fit=crop&auto=format`}
-                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                        alt={item.title}
+                        src={`${drink.strDrinkThumb}?t`}
+                        alt={drink.strDrink}
                         loading="lazy"
+                        width={100}
+                        height={100}
+                        onClick={() => handleClickImage(drink.strDrink)}
                     />
                     <ImageListItemBar
-                        title={item.title}
-                        subtitle={item.author}
+                        title={drink.strDrink}
+                        actionIcon={
+                            <IconButton
+                                onClick={() => handleClickFave(drink.strDrink)}
+                            >
+                                <FavoriteIcon sx={{ color: 'white' }}/>
+                            </IconButton>
+                        }
                     />
                 </ImageListItem>
             ))}
