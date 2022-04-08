@@ -21,8 +21,8 @@ function App() {
 
     return (
         <Container>
-            <AppBar sx={{ boxShadow: 'none', mb: 3}} color='transparent' position='static'>
-                <Toolbar position='static' sx={{ justifyContent: 'space-between'}} >
+            <AppBar sx={{ boxShadow: 'none', mb: 3, }} color='transparent' position='static'>
+                <Toolbar position='static' sx={{ justifyContent: 'space-between', p:0}} >
                      <Box 
                         sx={{
                             maxHeight: { xs: 100 },

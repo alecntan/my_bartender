@@ -23,7 +23,7 @@ export default function DrinkGrid(props) {
             {sample_drinks.map((drink) => (
                 <ImageListItem key={drink.strDrinkThumb}>
                     <img
-                        src={`${drink.strDrinkThumb}?t`}
+                        src={`${drink.strDrinkThumb}`}
                         alt={drink.strDrink}
                         loading="lazy"
                         width={100}
