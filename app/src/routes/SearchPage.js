@@ -28,6 +28,12 @@ export default function SearchPage(props) {
         });
     };
 
+    const handleEnter = (e) => {
+        if(e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
     return (
             <Grid 
                 container
@@ -38,7 +44,7 @@ export default function SearchPage(props) {
                     <Logo height={150} width={350} />
                 </Grid>
                 <Grid item xs={12} textAlign='center'>
-                    <TextField sx={{  width: "50%" }} onChange={updateSearch}/>
+                    <TextField sx={{  width: "50%" }} onChange={updateSearch} onKeyPress={handleEnter} />
                 </Grid>
                 <Grid item xs={12} textAlign='center'>
                     <Button sx={{ mr: 2, mt: 3, color: 'black'  }} onClick={handleSearch}>Search</Button>
