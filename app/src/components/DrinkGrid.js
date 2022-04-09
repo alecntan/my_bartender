@@ -20,26 +20,25 @@ export default function DrinkGrid(props) {
         //TODO:
         //  handle click when anon
         //  handle click when logged in
-        console.log(name + ' is a fave');
     }
 
     return (
         <ImageList sx={{ width: '100%'}} cols={4}>
-            {sample_drinks.map((drink) => (
-                <ImageListItem key={drink.strDrinkThumb}>
+            {props.drinks.map((drink) => (
+                <ImageListItem key={drink.id}>
                     <img
-                        src={`${drink.strDrinkThumb}`}
-                        alt={drink.strDrink}
+                        src={drink.imageLink}
+                        alt={drink.name}
                         loading="lazy"
                         width={100}
                         height={100}
-                        onClick={() => handleClickImage(drink.idDrink)}
+                        onClick={() => handleClickImage(drink.id)}
                     />
                     <ImageListItemBar
-                        title={drink.strDrink}
+                        title={drink.name}
                         actionIcon={
                             <IconButton
-                                onClick={() => handleClickFave(drink.strDrink)}
+                                onClick={() => handleClickFave(drink)}
                             >
                                 <FavoriteIcon sx={{ color: 'white' }}/>
                             </IconButton>

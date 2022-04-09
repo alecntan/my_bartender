@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
 export default function SearchPage(props) {
 
@@ -20,10 +21,9 @@ export default function SearchPage(props) {
     const handleSearch = () => {
         let params = search.split(',');
         params = params.map((p) => {return p.replace(/^\s+|\s+$/g, '')});
-        console.log(params.toString(','));
         navigate({pathname: 'search',
                   search  : createSearchParams({
-                  filter  : params.toString(',')
+                  params  : params.toString(',')
                 }).toString()
         });
     };
