@@ -9,26 +9,20 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../config.js';
 import { sendPasswordResetEmail } from 'firebase/auth';
 
-export default function ResetPasswordForm(props){
+export default function DeleteAccountForm(props){
 
     let navigate = useNavigate();
 
     const handleCancel = () => {
         navigate(-1);
     }
-
     const [password, setPassword] = useState('');
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
 
-    const [newPassword, setNewPassword] = useState('');
-    const handleNewPasswordChange = (e) => {
-        setNewPassword(e.target.value);
-    }
-
-    const handleReset = () => {
-        props.onReset(password, newPassword); 
+    const handleDelete = () => {
+        props.onDelete(password);
     };
 
 
@@ -42,16 +36,22 @@ export default function ResetPasswordForm(props){
         >
             <Grid item textAlign='center' xs={12}>
                 <Typography variant='h6'>
-                    Update Password
+                    Delete Account
                 </Typography>
             </Grid>
+            <Grid item textAlign='center' xs={12}>
+                <Typography variant='body2'>
+                    Are you sure you want to delete your account?
+                </Typography>
+            </Grid>
+
             <Grid item xs={12} textAlign='center'>
             { props.error != '' && <Typography variant='subtitle1' sx={{ color: 'red'}} xs={12}>{props.error}</Typography> }
             </Grid>
              <Grid item xs={12} textAlign='center'>
             { props.msg != '' && <Typography variant='subtitle1' sx={{ color: 'green'}} xs={12}>{props.msg}</Typography> }
             </Grid>
-            <Grid item xs={4} textAlign='right'>
+            <Grid item xs={6} textAlign='center'>
                 <TextField 
                     required id='outlined-password-input'
                     label='Current Password'
@@ -61,19 +61,8 @@ export default function ResetPasswordForm(props){
                     onChange={handlePasswordChange}
                 />
             </Grid>
-            <Grid item xs={4} textAlign='left'>
-                <TextField 
-                    required id='outlined-new-password-input'
-                    label='New Password'
-                    type='password'
-                    autoComplete='new-password'
-                    width='80%'
-                    onChange={handleNewPasswordChange}
-                />
-            </Grid>
-
             <Grid item xs={12} textAlign='center'>
-                <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleReset} >Update</Button>
+                <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleDelete} >Delete</Button>
                 <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleCancel}>Done</Button>
             </Grid>
         </Grid>

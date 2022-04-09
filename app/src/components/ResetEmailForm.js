@@ -16,12 +16,6 @@ export default function ResetEmailForm(props){
     const handleCancel = () => {
         navigate(-1);
     }
-    const [email, setEmail] = useState('');
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
     const [password, setPassword] = useState('');
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -33,7 +27,7 @@ export default function ResetEmailForm(props){
     }
 
     const handleReset = () => {
-        props.onReset(email, password, newEmail); 
+        props.onReset(password, newEmail); 
     };
 
 
@@ -57,38 +51,29 @@ export default function ResetEmailForm(props){
             { props.msg != '' && <Typography variant='subtitle1' sx={{ color: 'green'}} xs={12}>{props.msg}</Typography> }
             </Grid>
 
-            <Grid item xs={4} textAlign='center'>
-                <TextField 
-                    required id='outlined-required'
-                    label='Email'
-                    defaultValue=''
-                    fullWidth
-                    onChange={handleEmailChange}
-                />
-            </Grid>
-            <Grid item xs={4} textAlign='center'>
+            <Grid item xs={4} textAlign='right'>
                 <TextField 
                     required id='outlined-password-input'
                     label='Current Password'
                     type='password'
                     autoComplete='current-password'
-                    fullWidth
+                    width='80%'
                     onChange={handlePasswordChange}
                 />
             </Grid>
-            <Grid item xs={4} textAlign='center'>
+            <Grid item xs={4} textAlign='left'>
                 <TextField 
                     required id='outlined-new-email-input'
                     label='New Email'
-                    type='Email'
-                    fullWidth
+                    type='email'
+                    width='80%'
                     onChange={handleNewEmailChange}
                 />
             </Grid>
 
             <Grid item xs={12} textAlign='center'>
                 <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleReset} >Update</Button>
-                <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleCancel}>Cancel</Button>
+                <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleCancel}>Done</Button>
             </Grid>
         </Grid>
     );

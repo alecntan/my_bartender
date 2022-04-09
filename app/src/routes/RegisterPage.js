@@ -12,8 +12,8 @@ export default function LoginPage(props) {
     const handleRegister = (email, password) => {
 
         createUserWithEmailAndPassword(auth, email, password)
-        .then((useCredentials) => {
-            navigate('/login');
+        .then((userCredentials) => {
+            navigate('/');
             setError('');
         })
         .catch((error) => {

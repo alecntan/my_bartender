@@ -1,7 +1,7 @@
 import { auth } from '../config.js';
 import { useState } from 'react';
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -11,9 +11,11 @@ import MenuItem from '@mui/material/MenuItem';
 
 export default function UserMenu(props) {
 
+
+    const currUser = useOutletContext();
     const navigate = useNavigate();
     const handleClickFavourites = () => {
-        navigate(`/favourites/${auth.currentUser.uid}`);
+        navigate(`/user/${auth.currentUser.uid}/favourites`);
     }
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -26,12 +28,12 @@ export default function UserMenu(props) {
     }
 
     const handleUpdatePassword = () => {
-        navigate('/update_password');
+        navigate(`/user/${auth.currentUser.uid}/update_password`);
         setAnchorEl(null);
     }
 
     const handleUpdateEmail = () => {
-        navigate('/update_email');
+        navigate(`/user/${auth.currentUser.uid}/update_email`);
         setAnchorEl(null);
     }
 
@@ -39,6 +41,10 @@ export default function UserMenu(props) {
         signOut(auth).then(() => {
             navigate('/');
         });
+    }
+
+    const handleClickDeleteAccount = () => {
+        navigate(`/user/${auth.currentUser.uid}/delete_account`);
     }
 
     return (
@@ -65,11 +71,11 @@ export default function UserMenu(props) {
             >
                 <MenuItem onClick={handleUpdateEmail}>Update Email</MenuItem>
                 <MenuItem onClick={handleUpdatePassword}>Update Password</MenuItem>
-                <MenuItem onClick={handleCloseMenu}>Delete Account</MenuItem>
+                <MenuItem onClick={handleClickDeleteAccount}>Delete Account</MenuItem>
                 <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
             </Menu>
             <Typography variant='body1' sx={{ ml: 3 }}>
-                { auth.currentUser.email }
+                user: { auth.currentUser.email }
             </Typography>
         </Box>
     );
