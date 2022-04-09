@@ -9,8 +9,8 @@ import ProfilePage from './routes/ProfilePage.js';
 import FavouritesPage from './routes/FavouritesPage.js';
 import LoginPage from './routes/LoginPage.js';
 import RegisterPage from './routes/RegisterPage.js';
+import ForgotPasswordPage from './routes/ForgotPasswordPage.js';
 import ResetPasswordPage from './routes/ResetPasswordPage.js';
-
 
 
 ReactDOM.render(
@@ -23,7 +23,8 @@ ReactDOM.render(
                 <Route path='/favourites/:userId' element={<FavouritesPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/register' element={<RegisterPage />} />
-                <Route path='/reset' element={<ResetPasswordPage />} />
+                <Route path='/reset' element={<ForgotPasswordPage />} />
+                <Route path='/update_password' element={<ResetPasswordPage />} />
             </Route>
         </Routes>
     </BrowserRouter>,

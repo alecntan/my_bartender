@@ -13,15 +13,29 @@ export default function ResetPasswordForm(props){
 
     let navigate = useNavigate();
 
+    const handleCancel = () => {
+        navigate(-1);
+    }
     const [email, setEmail] = useState('');
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
 
+    const [password, setPassword] = useState('');
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const [newPassword, setNewPassword] = useState('');
+    const handleNewPasswordChange = (e) => {
+        setNewPassword(e.target.value);
+    }
+
     const handleReset = () => {
-        props.onReset(email); 
+        props.onReset(email, password, newPassword); 
     };
+
 
     return (
         <Grid 
@@ -33,24 +47,49 @@ export default function ResetPasswordForm(props){
         >
             <Grid item textAlign='center' xs={12}>
                 <Typography variant='h6'>
-                    Reset Password
+                    Update Password
                 </Typography>
             </Grid>
             <Grid item xs={12} textAlign='center'>
             { props.error != '' && <Typography variant='subtitle1' sx={{ color: 'red'}} xs={12}>{props.error}</Typography> }
             </Grid>
+             <Grid item xs={12} textAlign='center'>
+            { props.msg != '' && <Typography variant='subtitle1' sx={{ color: 'green'}} xs={12}>{props.msg}</Typography> }
+            </Grid>
 
-            <Grid item xs={12} textAlign='center'>
+            <Grid item xs={4} textAlign='center'>
                 <TextField 
                     required id='outlined-required'
                     label='Email'
-                    defaultValue='example@example.com'
-                    sx={{  width: "30%" }}
+                    defaultValue=''
+                    fullWidth
                     onChange={handleEmailChange}
                 />
             </Grid>
+            <Grid item xs={4} textAlign='center'>
+                <TextField 
+                    required id='outlined-password-input'
+                    label='Current Password'
+                    type='password'
+                    autoComplete='current-password'
+                    fullWidth
+                    onChange={handlePasswordChange}
+                />
+            </Grid>
+            <Grid item xs={4} textAlign='center'>
+                <TextField 
+                    required id='outlined-new-password-input'
+                    label='New Password'
+                    type='password'
+                    autoComplete='new-password'
+                    fullWidth
+                    onChange={handleNewPasswordChange}
+                />
+            </Grid>
+
             <Grid item xs={12} textAlign='center'>
-                <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleReset} >Send Email</Button>
+                <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleReset} >Update</Button>
+                <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleCancel}>Cancel</Button>
             </Grid>
         </Grid>
     );

@@ -25,6 +25,11 @@ export default function UserMenu(props) {
         setAnchorEl(null);
     }
 
+    const handleUpdatePassword = () => {
+        navigate('/update_password');
+        setAnchorEl(null);
+    }
+
     const handleClickLogout = () => {
         signOut(auth).then(() => {
             navigate('/');
@@ -54,7 +59,7 @@ export default function UserMenu(props) {
                 }}
             >
                 <MenuItem onClick={handleCloseMenu}>Update Email</MenuItem>
-                <MenuItem onClick={handleCloseMenu}>Update Password</MenuItem>
+                <MenuItem onClick={handleCloseMenu} onClick={handleUpdatePassword}>Update Password</MenuItem>
                 <MenuItem onClick={handleCloseMenu}>Delete Account</MenuItem>
                 <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
             </Menu>

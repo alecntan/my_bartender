@@ -38,7 +38,7 @@ function App() {
                         src={logo}
                         onClick={handleClickLogo}
                      />
-                     { auth.currentUser ? <UserMenu /> : <Button color='inherit' sx={{ mr : 5}} onClick={handleClickLogin}>Login</Button> }
+                     { auth.currentUser != null ? <UserMenu /> : <Button color='inherit' sx={{ mr : 5}} onClick={handleClickLogin}>Login</Button> }
                 </Toolbar>
             </AppBar> 
             <Outlet />
