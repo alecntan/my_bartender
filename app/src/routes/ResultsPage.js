@@ -6,17 +6,20 @@ import { sample_drinks } from '../data/sample_drinks.js';
 
 export default function ResultsPage(props) {
 
-    const [drinks, setDrinks] = useState([]);
-    const { filter } = useLocation();
-    
-    console.log(filter);
+    //const [drinks, setDrinks] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const drinks = sample_drinks;
 
     return (
         <>
             <Typography sx={{ mb: 2 }}variant='h5' component='div'>
                 Search Results
             </Typography>
-            {drinks.length > 0 ? <DrinkGrid drinks={drinks}/> : "No recipes found"}
+            {drinks.length > 0 ? <DrinkGrid drinks={drinks}/> : (
+                <Typography variant='body1' component='div'>
+                    No recipes found
+                </Typography>
+            )}
         </>
     );
 }

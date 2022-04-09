@@ -18,10 +18,13 @@ export default function SearchPage(props) {
    
     const navigate = useNavigate();
     const handleSearch = () => {
+        let params = search.split(',');
+        params = params.map((p) => {return p.replace(/^\s+|\s+$/g, '')});
+        console.log(params.toString(','));
         navigate({pathname: 'search',
                   search  : createSearchParams({
-                    filter : search
-                  }).toString()
+                  filter  : params.toString(',')
+                }).toString()
         });
     };
 
