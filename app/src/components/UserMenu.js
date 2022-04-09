@@ -30,6 +30,11 @@ export default function UserMenu(props) {
         setAnchorEl(null);
     }
 
+    const handleUpdateEmail = () => {
+        navigate('/update_email');
+        setAnchorEl(null);
+    }
+
     const handleClickLogout = () => {
         signOut(auth).then(() => {
             navigate('/');
@@ -58,11 +63,14 @@ export default function UserMenu(props) {
                     'aria-labelledby' : 'basic button',
                 }}
             >
-                <MenuItem onClick={handleCloseMenu}>Update Email</MenuItem>
-                <MenuItem onClick={handleCloseMenu} onClick={handleUpdatePassword}>Update Password</MenuItem>
+                <MenuItem onClick={handleUpdateEmail}>Update Email</MenuItem>
+                <MenuItem onClick={handleUpdatePassword}>Update Password</MenuItem>
                 <MenuItem onClick={handleCloseMenu}>Delete Account</MenuItem>
                 <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
             </Menu>
+            <Typography variant='body1' sx={{ ml: 3 }}>
+                { auth.currentUser.email }
+            </Typography>
         </Box>
     );
 }

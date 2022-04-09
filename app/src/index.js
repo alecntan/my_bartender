@@ -11,7 +11,7 @@ import LoginPage from './routes/LoginPage.js';
 import RegisterPage from './routes/RegisterPage.js';
 import ForgotPasswordPage from './routes/ForgotPasswordPage.js';
 import ResetPasswordPage from './routes/ResetPasswordPage.js';
-
+import ResetEmailPage from './routes/ResetEmailPage.js';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -24,6 +24,7 @@ ReactDOM.render(
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/register' element={<RegisterPage />} />
                 <Route path='/reset' element={<ForgotPasswordPage />} />
+                <Route path='/update_email' element={<ResetEmailPage />} />
                 <Route path='/update_password' element={<ResetPasswordPage />} />
             </Route>
         </Routes>
