@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import { auth } from './config.js';
+import UserMenu from './components/UserMenu.js';
+import onAuthStateChanged from 'firebase/auth';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
@@ -34,7 +38,7 @@ function App() {
                         src={logo}
                         onClick={handleClickLogo}
                      />
-                     <Button color='inherit' onClick={handleClickLogin}>Login</Button>
+                     { auth.currentUser ? <UserMenu /> : <Button color='inherit' sx={{ mr : 5}} onClick={handleClickLogin}>Login</Button> }
                 </Toolbar>
             </AppBar> 
             <Outlet />

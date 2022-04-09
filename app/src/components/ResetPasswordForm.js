@@ -9,31 +9,19 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../config.js';
 import { sendPasswordResetEmail } from 'firebase/auth';
 
-export default function LoginForm(props){
+export default function ResetPasswordForm(props){
 
     let navigate = useNavigate();
 
-    const handleClickSignUp = () => {
-        navigate('/register');
-    }
     const [email, setEmail] = useState('');
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
 
-    const [password, setPassword] = useState('');
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    }
-
-    const handleLogin = () => {
-        props.onLogin(email, password); 
-    };
-
     const handleReset = () => {
-        navigate('/reset');
-    }
+        props.onReset(email); 
+    };
 
     return (
         <Grid 
@@ -45,7 +33,7 @@ export default function LoginForm(props){
         >
             <Grid item textAlign='center' xs={12}>
                 <Typography variant='h6'>
-                    Login
+                    Reset Password
                 </Typography>
             </Grid>
             <Grid item xs={12} textAlign='center'>
@@ -62,23 +50,7 @@ export default function LoginForm(props){
                 />
             </Grid>
             <Grid item xs={12} textAlign='center'>
-                <TextField 
-                    required id='outlined-password-input'
-                    label='Password'
-                    type='password'
-                    autoComplete='current-password'
-                    sx={{  width: "30%" }}
-                    onChange={handlePasswordChange}
-                />
-            </Grid>
-            <Grid item xs={12} textAlign='center'>
-                <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleLogin} >Login</Button>
-                <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleClickSignUp}>Sign Up</Button>
-            </Grid>
-            <Grid item xs={12} textAlign='center'>
-                <Button color='inherit' onClick={handleReset}>
-                    Forgot Password?
-                </Button>
+                <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleReset} >Send Email</Button>
             </Grid>
         </Grid>
     );

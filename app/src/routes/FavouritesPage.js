@@ -2,19 +2,20 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import DrinkGrid from '../components/DrinkGrid.js';
 import Typography from '@mui/material/Typography';
+import VerifyEmailNotice from '../components/VerifyEmailNotice.js';
+import FavouritesGrid from '../components/FavouritesGrid.js';
+import FavouritesContent from '../components/FavouritesContent.js';
+import { auth } from '../config.js';
 
 
 export default function FavouritesPage(props) {
-
-    const [faves, setFaves] = useState([]);
-
     return (
         <>
-            <Typography sx={{ mb: 2}} variant='h5' component='div'>
-                My Favourites
-            </Typography>
-            {faves.length > 0 ? <DrinkGrid /> : "No favourites listed"}
-        </>
-
+            { auth.currentUser != null ? <FavouritesGrid /> : (
+                <Typography variant='h5' textAlign='center' component='div'>
+                    Access Denied 
+                </Typography>
+            ) }
+        </> 
     );
 }
