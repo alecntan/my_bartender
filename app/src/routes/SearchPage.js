@@ -48,7 +48,6 @@ export default function SearchPage(props) {
                 </Grid>
                 <Grid item xs={12} textAlign='center'>
                     <Button sx={{ mr: 2, mt: 3, color: 'black'  }} onClick={handleSearch}>Search</Button>
-                    <Button sx={{ ml: 2, mt: 3, color: 'black'  }}>Random</Button>
                 </Grid>
             </Grid>
     );

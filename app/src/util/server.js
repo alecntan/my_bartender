@@ -1,3 +1,6 @@
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { db } from '../config.js';
+
 const url = 'https://us-central1-my-bartender-4c41e.cloudfunctions.net/getDrinks';
 const test_url = 'http://localhost:5001/my-bartender-4c41e/us-central1/getDrinks';
 
@@ -7,7 +10,11 @@ export function getDrinks(params, callback) {
     return fetch(dest)
             .then((response) => (response.json()))
             .then((j) => parse_drinks(j))
-            .then((o) => callback(o));
+            .then((o) => { 
+                callback(o); 
+                return o;
+            })
+            .then((o) => { store_drinks(o); });
 }
 
 
@@ -42,5 +49,17 @@ const get_ingredients = (d) => {
         }
     }
     return ingredients;
+}
+
+const store_drinks = (drinks) => {
+    drinks.forEach(store_drink);
+}
+
+const store_drink = (drink_obj) => {
+    try {
+        setDoc(doc(db, 'drinks', drink_obj.id), drink_obj);
+    } catch (e) {
+        console.error('Error  adding document: ', e);
+    }
 }
 

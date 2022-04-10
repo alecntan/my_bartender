@@ -36,13 +36,6 @@ export default function DrinkGrid(props) {
                     />
                     <ImageListItemBar
                         title={drink.name}
-                        actionIcon={
-                            <IconButton
-                                onClick={() => handleClickFave(drink)}
-                            >
-                                <FavoriteIcon sx={{ color: 'white' }}/>
-                            </IconButton>
-                        }
                     />
                 </ImageListItem>
             ))}

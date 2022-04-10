@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { sample_drink } from '../data/sample_drink.js';
@@ -12,8 +13,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { doc, getDoc, collection } from 'firebase/firestore';
+import { db } from '../config.js';
+
 
 export default function ProfilePage(props) {
+
+    const drink_id = useParams();
+
+    const getDrink = (id) => {
+        return { d : 'd' };
+    };
+
+    const curr_drink = getDrink(drink_id);
+
     return (
         <Grid container sx={{ mt: 7 }} spacing={4}>
             <Grid item textAlign='center' xs={6}>
@@ -21,7 +34,7 @@ export default function ProfilePage(props) {
                     display='flex'
                     justifyContent='center'
                     component='img'
-                    src={sample_drink.imageLink}
+                    src={curr_drink.imageLink}
                     width='100%'
                 />
             </Grid>
@@ -33,16 +46,16 @@ export default function ProfilePage(props) {
                     </IconButton>
                 </Typography>
                 <Typography variant='h3'component='div'>
-                    { sample_drink.name }
+                    { curr_drink.name }
                 </Typography>
                 <Typography variant='subtitle1' gutterBottom component='div' sx={{ mb: 2}}>
-                    { sample_drink.type } | { sample_drink.iba }
+                    { curr_drink.type }  { curr_drink.iba == null ? '' : `| ${curr_drink.iba}` }
                 </Typography>
                 <Typography variant='h6' gutterBottom component='div'>
                     Ingredients
                 </Typography>
                 <List dense={true}>
-                    { sample_drink.ingredients.map((i) => {
+                    { curr_drink.ingredients.map((i) => {
                         return (
                             <ListItem key={i.name}>
                                 <ListItemText
@@ -56,7 +69,7 @@ export default function ProfilePage(props) {
                     Instructions
                 </Typography>
                 <Typography variant='body1' gutterBottom component='div'>
-                    { sample_drink.instructions }
+                    { curr_drink.instructions }
                 </Typography>
             </Grid>
         </Grid>
