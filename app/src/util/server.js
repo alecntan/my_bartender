@@ -1,4 +1,4 @@
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, setDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../config.js';
 
 const url = 'https://us-central1-my-bartender-4c41e.cloudfunctions.net/getDrinks';
@@ -63,3 +63,19 @@ const store_drink = (drink_obj) => {
     }
 }
 
+export const get_drink = async (drink_id) => {
+
+    const docRef = doc(db, 'drinks', drink_id.drinkId);
+    const docSnap = await getDoc(docRef);
+
+    if(docSnap.exists()) {
+        return docSnap.data();
+    } else {
+        return null;
+    }
+}
+
+export const get_drink_by_id =(id, callback) => {
+    get_drink(id)
+        .then((d) => callback(d));
+}
