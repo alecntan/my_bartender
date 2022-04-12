@@ -3,8 +3,9 @@ import { auth } from '../config.js';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import RegisterForm from '../components/Register.js';
+import { init_favourites } from '../util/server.js';
 
-export default function LoginPage(props) {
+export default function RegisterPage(props) {
 
    
     const [error, setError] = useState('');
@@ -15,6 +16,7 @@ export default function LoginPage(props) {
         .then((userCredentials) => {
             navigate('/');
             setError('');
+            init_favourites(userCredentials.user.uid);
         })
         .catch((error) => {
             setError(error.message);

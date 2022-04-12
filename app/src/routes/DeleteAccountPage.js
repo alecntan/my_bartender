@@ -3,6 +3,7 @@ import DeleteAccountForm from '../components/DeleteAccountForm.js';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { auth } from '../config.js';
 import { EmailAuthProvider, reauthenticateWithCredential, deleteUser } from 'firebase/auth';
+import { delete_favourites } from '../util/server.js';
 
 export default function DeleteAccountPage(props) {
 
@@ -13,8 +14,11 @@ export default function DeleteAccountPage(props) {
         const credential = EmailAuthProvider.credential(auth.currentUser.email, password);
         reauthenticateWithCredential(auth.currentUser, credential)
         .then(() => { 
+            const user_id = auth.currentUser.uid;
             deleteUser(auth.currentUser);
+            delete_favourites(user_id);
             navigate('/');
+
         }).catch((error) => {setError(error.message); })
     };
 

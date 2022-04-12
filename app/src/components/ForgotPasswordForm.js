@@ -23,6 +23,10 @@ export default function ForgotPasswordForm(props){
         props.onReset(email); 
     };
 
+    const handleCancel = () => {
+        navigate(-1);
+    }
+
     return (
         <Grid 
             sx={{ mt: 15 }}
@@ -51,6 +55,7 @@ export default function ForgotPasswordForm(props){
             </Grid>
             <Grid item xs={12} textAlign='center'>
                 <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleReset} >Send Email</Button>
+                <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleCancel} >Cancel</Button>
             </Grid>
         </Grid>
     );

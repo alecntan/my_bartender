@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 export default function UserMenu(props) {
 
 
-    const currUser = useOutletContext();
+    //const currUser = useOutletContext();
     const navigate = useNavigate();
     const handleClickFavourites = () => {
         navigate(`/user/${auth.currentUser.uid}/favourites`);
@@ -58,7 +58,7 @@ export default function UserMenu(props) {
                 aria-expanded={open ? 'true' : undefined }
                 onClick={handleClickMenu}
             >
-                My Profile
+                My Account
             </Button>
             <Menu
                 id='basic-menu'

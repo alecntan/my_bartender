@@ -14,12 +14,10 @@ export default function RegisterForm(props){
     const [password, setPassword] = useState('');
 
     const handleEmailChange = (e) => {
-        //TODO validate email
         setEmail(e.target.value);
     };
 
     const handlePasswordChange = (e) => {
-        //TODO validate password
         setPassword(e.target.value);
     };
 
@@ -29,6 +27,10 @@ export default function RegisterForm(props){
 
     const handleClickLogin = () => {
         navigate('/login');
+    }
+
+    const handleCancel = () => {
+        navigate(-1);
     }
 
     return (
@@ -51,7 +53,6 @@ export default function RegisterForm(props){
                 <TextField 
                     required id='outlined-required'
                     label='Email'
-                    defaultValue='example@example.com'
                     sx={{  width: "30%" }}
                     onChange={handleEmailChange}
                 />
@@ -67,8 +68,11 @@ export default function RegisterForm(props){
                 />
             </Grid>
             <Grid item xs={12} textAlign='center'>
-                <Button sx={{ mr: 2, mt: 3, color: 'black' }} onClick={handleClickLogin}>Login</Button>
                 <Button sx={{ ml: 2, mt: 3, color: 'black'  }} onClick={handleClickRegister}>Sign Up</Button>
+                <Button sx={{ mr: 2, mt: 3, color: 'black' }} onClick={handleCancel}>Cancel</Button>
+            </Grid>
+            <Grid item xs={12} textAlign='center'>
+                <Button sx={{color: 'black'  }} onClick={handleClickLogin}>Already Have an Account?</Button>
             </Grid>
         </Grid>
     );

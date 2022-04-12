@@ -1,11 +1,19 @@
-import { collection, addDoc, setDoc, doc, getDoc } from 'firebase/firestore';
+import { collection,
+         addDoc,
+         setDoc,
+         doc,
+         getDoc,
+         deleteDoc,
+         updateDoc, 
+         arrayUnion,
+         arrayRemove } from 'firebase/firestore';
 import { db } from '../config.js';
 
 const url = 'https://us-central1-my-bartender-4c41e.cloudfunctions.net/getDrinks';
 const test_url = 'http://localhost:5001/my-bartender-4c41e/us-central1/getDrinks';
 
 export function getDrinks(params, callback) {
-    const dest =  `${test_url}?${params}`;
+    const dest =  `${url}?${params}`;
     console.log(dest);
     return fetch(dest)
             .then((response) => (response.json()))
@@ -78,4 +86,66 @@ export const get_drink = async (drink_id) => {
 export const get_drink_by_id =(id, callback) => {
     get_drink(id)
         .then((d) => callback(d));
+}
+
+
+export const init_favourites = (user_id) => {
+    try {
+        setDoc(doc(db, 'users', user_id), {'favourites' : []});
+    } catch (e) {
+        console.log("Error: creating new user: ", e); 
+    }
+}
+
+export const set_favourite = (user_id, drink_obj) => {
+    updateDoc(doc(db, 'users', user_id), {
+        favourites: arrayUnion(drink_obj)
+    })
+}
+
+export const del_favourite = (user_id, drink_obj) => {
+    updateDoc(doc(db, 'users', user_id), {
+        favourites: arrayRemove(drink_obj)
+    });
+}
+
+export const delete_favourites = (user_id) => {
+    deleteDoc(doc(db, 'users', user_id));
+}
+
+const check_favourites = async (user_id, drink_obj) => {
+    const docRef = doc(db, 'users', user_id);
+    const docSnap = await getDoc(docRef);
+
+    if(docSnap.exists()) {
+        const favourites = docSnap.data().favourites;
+        for(let i = 0; i < favourites.length; ++i) {
+            if(favourites[i].id == drink_obj.id) {
+                return true;
+            }
+        }
+        return false;
+    } else {
+        return false;
+    }
+}
+
+export const is_favourite = (user_id, drink_obj, callback) => {
+    check_favourites(user_id, drink_obj)
+        .then((res) => callback(res));
+}
+
+const user_favourites = async (user_id) => {
+    const docSnap = await getDoc(doc(db, 'users', user_id));
+
+    if(docSnap.exists()) {
+        const favourites = docSnap.data().favourites;
+        return favourites;
+    }
+
+    return [];
+}
+
+export const get_favourites = (user_id, callback) => {
+    user_favourites(user_id).then((favourites) => callback(favourites));
 }

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -7,8 +8,36 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { set_favourite, del_favourite, is_favourite } from '../util/server.js';
+import { auth } from '../config.js';
+import { nanoid } from 'nanoid';
 
 export default function Profile(props) {
+
+    const [isFavourite, setFavourite] = useState(false);
+
+    useEffect(() => {
+        if(auth.currentUser == null) {
+            setFavourite(false);
+        } else {
+            is_favourite(auth.currentUser.uid, props.drink, setFavourite);
+        }
+    }, []);
+
+    const handleFavouriteClick = () => {
+        if( auth.currentUser == null) {
+            return;
+        };
+
+        if(isFavourite) {
+            del_favourite(auth.currentUser.uid, props.drink);
+            setFavourite(!isFavourite);
+        } else {
+            set_favourite(auth.currentUser.uid, props.drink);
+            setFavourite(!isFavourite);
+        }
+    };
+
 
     return (
         <Grid container sx={{ mt: 7 }} spacing={4}>
@@ -23,9 +52,9 @@ export default function Profile(props) {
             </Grid>
             <Grid item xs={6}>
                 <Typography variant='overline' display='block'>
-                    Remove Favourite
-                    <IconButton>
-                        <FavoriteIcon sx={{ color: 'red' }}/>
+                    { isFavourite ? 'Remove Favourite' : 'Add to Favourites' }
+                    <IconButton onClick={handleFavouriteClick} >
+                        { isFavourite ? <FavoriteIcon sx={{ color: 'red' }}/> : <FavoriteIcon sx={{ color: 'grey' }}/> }
                     </IconButton>
                 </Typography>
                 <Typography variant='h3'component='div'>
@@ -40,7 +69,7 @@ export default function Profile(props) {
                 <List dense={true}>
                     { props.drink.ingredients.map((i) => {
                         return (
-                            <ListItem key={i.name}>
+                            <ListItem key={nanoid()}>
                                 <ListItemText
                                     primary={`${i.name} ${ i.measure == null ? '' : '( ' + i.measure + ' )' }`}
                                 />

@@ -34,6 +34,10 @@ export default function LoginForm(props){
         navigate('/reset');
     }
 
+    const handleCancel = () => {
+        navigate(-1);
+    }
+
     return (
         <Grid 
             sx={{ mt: 15 }}
@@ -55,7 +59,6 @@ export default function LoginForm(props){
                 <TextField 
                     required id='outlined-required'
                     label='Email'
-                    defaultValue='example@example.com'
                     sx={{  width: "30%" }}
                     onChange={handleEmailChange}
                 />
@@ -72,13 +75,17 @@ export default function LoginForm(props){
             </Grid>
             <Grid item xs={12} textAlign='center'>
                 <Button sx={{ mr: 2, mt: 2, color: 'black'  }} onClick={handleLogin} >Login</Button>
-                <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleClickSignUp}>Sign Up</Button>
+                <Button sx={{ ml: 2, mt: 2, color: 'black'  }} onClick={handleCancel}>Cancel</Button>
             </Grid>
-            <Grid item xs={12} textAlign='center'>
+            <Grid item textAlign='right' xs={6}>
                 <Button color='inherit' onClick={handleReset}>
                     Forgot Password?
                 </Button>
             </Grid>
+            <Grid item textAlign='left' xs={6}>
+                <Button color='inherit' onClick={handleClickSignUp}>Create Account</Button>
+            </Grid>
+
         </Grid>
     );
 }

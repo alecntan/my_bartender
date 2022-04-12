@@ -16,12 +16,6 @@ export default function DrinkGrid(props) {
         navigate(`/drink/${id}`);
     }
 
-    const handleClickFave = (name) => {
-        //TODO:
-        //  handle click when anon
-        //  handle click when logged in
-    }
-
     return (
         <ImageList sx={{ width: '100%'}} cols={4}>
             {props.drinks.map((drink) => (
