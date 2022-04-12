@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -47,7 +46,7 @@ export default function RegisterForm(props){
                 </Typography>
             </Grid>
             <Grid item xs={12} textAlign="center">
-                { props.error != '' && <Typography textAlign='center' sx={{ color: 'red' }} variant='subtitle1' component='div'>{props.error}</Typography>}
+                { props.error !== '' && <Typography textAlign='center' sx={{ color: 'red' }} variant='subtitle1' component='div'>{props.error}</Typography>}
             </Grid>
             <Grid item xs={12} textAlign='center'>
                 <TextField 

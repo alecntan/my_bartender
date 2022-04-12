@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { auth } from './config.js';
 import UserMenu from './components/UserMenu.js';
 import { onAuthStateChanged } from 'firebase/auth';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import logo from './logo.png';
 
 function App() {

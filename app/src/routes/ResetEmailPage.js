@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import ResetEmailForm from '../components/ResetEmailForm.js';
-import { useNavigate, useOutletContext } from 'react-router-dom';
 import { auth } from '../config.js';
 import { EmailAuthProvider, reauthenticateWithCredential, updateEmail }from 'firebase/auth';
 
 export default function ResetEmailPage(props) {
 
-    const navigate = useNavigate();
     const [error, setError] = useState('');
     const [msg, setMsg] = useState('');
 

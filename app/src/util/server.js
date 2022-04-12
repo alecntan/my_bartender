@@ -1,6 +1,4 @@
-import { collection,
-         addDoc,
-         setDoc,
+import { setDoc,
          doc,
          getDoc,
          deleteDoc,
@@ -120,7 +118,7 @@ const check_favourites = async (user_id, drink_obj) => {
     if(docSnap.exists()) {
         const favourites = docSnap.data().favourites;
         for(let i = 0; i < favourites.length; ++i) {
-            if(favourites[i].id == drink_obj.id) {
+            if(favourites[i].id === drink_obj.id) {
                 return true;
             }
         }

@@ -1,7 +1,7 @@
 import { auth } from '../config.js';
 import { useState } from 'react';
 import { signOut } from 'firebase/auth';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';

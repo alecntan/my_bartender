@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../config.js';
-import { sendPasswordResetEmail } from 'firebase/auth';
 
 export default function DeleteAccountForm(props){
 
@@ -46,10 +43,10 @@ export default function DeleteAccountForm(props){
             </Grid>
 
             <Grid item xs={12} textAlign='center'>
-            { props.error != '' && <Typography variant='subtitle1' sx={{ color: 'red'}} xs={12}>{props.error}</Typography> }
+            { props.error !== '' && <Typography variant='subtitle1' sx={{ color: 'red'}} xs={12}>{props.error}</Typography> }
             </Grid>
              <Grid item xs={12} textAlign='center'>
-            { props.msg != '' && <Typography variant='subtitle1' sx={{ color: 'green'}} xs={12}>{props.msg}</Typography> }
+            { props.msg !== '' && <Typography variant='subtitle1' sx={{ color: 'green'}} xs={12}>{props.msg}</Typography> }
             </Grid>
             <Grid item xs={6} textAlign='center'>
                 <TextField 

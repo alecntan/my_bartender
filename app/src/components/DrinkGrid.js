@@ -2,11 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import ListSubheader from '@mui/material/ListSubheader';
-import IconButton from '@mui/material/IconButton';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { images } from '../data/image_list.js';
-import { sample_drinks } from '../data/sample_drinks.js';
 
 
 export default function DrinkGrid(props) {

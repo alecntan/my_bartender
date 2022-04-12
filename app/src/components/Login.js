@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../config.js';
 
 export default function LoginForm(props){
 
@@ -52,7 +50,7 @@ export default function LoginForm(props){
                 </Typography>
             </Grid>
             <Grid item xs={12} textAlign='center'>
-            { props.error != '' && <Typography variant='subtitle1' sx={{ color: 'red'}} xs={12}>{props.error}</Typography> }
+            { props.error !== '' && <Typography variant='subtitle1' sx={{ color: 'red'}} xs={12}>{props.error}</Typography> }
             </Grid>
 
             <Grid item xs={12} textAlign='center'>

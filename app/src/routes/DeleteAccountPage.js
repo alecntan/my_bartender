@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DeleteAccountForm from '../components/DeleteAccountForm.js';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../config.js';
 import { EmailAuthProvider, reauthenticateWithCredential, deleteUser } from 'firebase/auth';
 import { delete_favourites } from '../util/server.js';

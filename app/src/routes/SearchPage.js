@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
 import Logo from '../components/Logo.js';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { getFunctions, httpsCallable } from 'firebase/functions';
 
 export default function SearchPage(props) {
 
     const [search, setSearch] = useState('');
-    const [searchParams, setSearchParams] = useSearchParams();
 
     const updateSearch = (e) => {
         const new_val = e.target.value;

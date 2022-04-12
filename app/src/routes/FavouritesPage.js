@@ -1,13 +1,9 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import DrinkGrid from '../components/DrinkGrid.js';
+import { useState } from 'react';
 import Typography from '@mui/material/Typography';
-import VerifyEmailNotice from '../components/VerifyEmailNotice.js';
 import FavouritesGrid from '../components/FavouritesGrid.js';
-import FavouritesContent from '../components/FavouritesContent.js';
 import { auth } from '../config.js';
 import { get_favourites } from '../util/server.js';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 
 
 export default function FavouritesPage(props) {

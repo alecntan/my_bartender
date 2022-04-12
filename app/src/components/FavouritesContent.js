@@ -1,4 +1,3 @@
-import { auth } from '../config.js';
 import { useOutletContext } from 'react-router-dom';
 import FavouritesGrid from './FavouritesGrid.js';
 import VerifyEmailNotice from './VerifyEmailNotice.js';
