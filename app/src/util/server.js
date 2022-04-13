@@ -12,7 +12,6 @@ const test_url = 'http://localhost:5001/my-bartender-4c41e/us-central1/getDrinks
 
 export function getDrinks(params, callback) {
     const dest =  `${url}?${params}`;
-    console.log(dest);
     return fetch(dest)
             .then((response) => (response.json()))
             .then((j) => parse_drinks(j))
@@ -20,7 +19,11 @@ export function getDrinks(params, callback) {
                 callback(o); 
                 return o;
             })
-            .then((o) => { store_drinks(o); });
+            .then((o) => { store_drinks(o); })
+            .catch((e) => {
+                callback(-1);
+            });
+        
 }
 
 
@@ -65,8 +68,7 @@ const store_drink = (drink_obj) => {
     try {
         setDoc(doc(db, 'drinks', drink_obj.id), drink_obj);
     } catch (e) {
-        console.error('Error  adding document: ', e);
-    }
+   }
 }
 
 export const get_drink = async (drink_id) => {
@@ -91,7 +93,6 @@ export const init_favourites = (user_id) => {
     try {
         setDoc(doc(db, 'users', user_id), {'favourites' : []});
     } catch (e) {
-        console.log("Error: creating new user: ", e); 
     }
 }
 
